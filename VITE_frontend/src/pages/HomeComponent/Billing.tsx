@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
     Table,
     TableBody,
@@ -13,38 +13,36 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useTheContext } from "@/context";
-import { PORT, BASE_URL, STORE_STOCK_QUERRY, BILLING_STOCK } from '@/env';
+import { PORT, BASE_URL, BILLING_STOCK } from '@/env';
 import SubBillingAddMed from "./SubBillingAddMed";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function Billing() {
     const{ toast } = useToast();
-    const [ localBillData, setLocalBillData ] = useState([]);
-    const [ popoverData, setPopoverData ] = useState([]);
-    const [ querry, setQuerry ] = useState("");
+    const [ localBillData, setLocalBillData ] = useState([]) as any;
     const [ Total, setTotal ] = useState(0);
     const [ formName, setFormName ] = useState("");
     const [ formAge, setFormAge ] = useState(0);
     const [ formPhone, setFormPhone ] = useState("");
 
-    const handleFormName = (e) => {
+    const handleFormName = (e:any) => {
         setFormName(e.target.value);
     }
-    const handleFormAge = (e) => {
+    const handleFormAge = (e:any) => {
         setFormAge(e.target.value);
     }
-    const handleFormPhone = (e) => {
+    const handleFormPhone = (e:any) => {
         setFormPhone(e.target.value);
     }
-    const updateLocalData = (element)=>{
+    const updateLocalData = (element:any)=>{
         console.log("wallaha");
-        setLocalBillData((arr)=>{
+        setLocalBillData((arr:any)=>{
             const newArr = [...arr, element];
             return newArr;            
         });
     }
-    const RemoveByIndex = (index) => {
-        setLocalBillData((arr)=>{
+    const RemoveByIndex = (index:any) => {
+        setLocalBillData((arr:any)=>{
             const newArr = arr.slice(0, index).concat(arr.slice(index + 1));
             return newArr;
         });
@@ -53,11 +51,11 @@ export default function Billing() {
         //calculate the total valuation depennding on the data...
         let value = 0;
         for (let i = 0; i < localBillData.length; i++) {
-            value += (localBillData[i]?.medData.pricePerTab * localBillData[i]?.quantity) || 0;
+            value += (localBillData[i]?.medData?.pricePerTab * localBillData[i]?.quantity) || 0;
         }
         setTotal(value);        
     },[localBillData]);
-    const { token, userEmail } = useTheContext();
+    const { token, userEmail } = useTheContext() as any;
     
     const submitBill = () => {
         //doing per value checks for the values for formname and form age
@@ -75,10 +73,10 @@ export default function Billing() {
                     var urlencoded = new URLSearchParams();
                     urlencoded.append("storeEmail", userEmail);
                     urlencoded.append("formName", formName);
-                    urlencoded.append("formAge", formAge);
+                    urlencoded.append("formAge", formAge.toString());
                     urlencoded.append("formPhone", formPhone);
                     urlencoded.append("medSchemaBasedData", JSON.stringify(localBillData));
-                    urlencoded.append("totalAmount", Total);
+                    urlencoded.append("totalAmount", Total.toString());
 
                     var requestOptions = {
                     method: 'POST',
@@ -141,7 +139,7 @@ export default function Billing() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    { localBillData && localBillData.map((item, index) => {
+                    { localBillData && localBillData.map((item:any, index:any) => {
                         return (
                             <TableRow>
                                 <TableCell className="font-light text-center">{index+1}</TableCell>

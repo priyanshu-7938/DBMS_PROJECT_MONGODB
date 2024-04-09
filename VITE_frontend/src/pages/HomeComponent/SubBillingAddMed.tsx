@@ -3,23 +3,22 @@ import React,{ useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { BASE_URL, PORT, REMOVE_STOCK, STORE_STOCK_QUERRY } from "@/env";
+import { BASE_URL, PORT, STORE_STOCK_QUERRY } from "@/env";
 import { Button } from "@/components/ui/button";
 import { useTheContext } from "@/context";
-import { useToast } from "@/components/ui/use-toast";
-import { ArrowLeft } from "lucide-react";
 
-export default function SubBillingAddMed({ setData }) {
+export default function SubBillingAddMed({ setData }: any) {
     
     const [ querry, setQuerry ] = useState("");
+    console.log(querry);
     const [ medData, setmedData ] = useState([]);
-    const { token, userEmail } = useTheContext();
+    const { token, userEmail } = useTheContext() as any;
     const handelChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         setQuerry(event.target.value);
         fetchQuerry(event.target.value);
     };
-    const fetchQuerry = (str)=> {
+    const fetchQuerry = (str:any)=> {
                 var myHeaders = new Headers();
                 myHeaders.append("Authorization", token);
                 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -64,9 +63,9 @@ export default function SubBillingAddMed({ setData }) {
 }
 
 
-function MedComponent({ data, setData }){    
+function MedComponent({ data, setData }:{data:any;setData:any}){    
     const [ QuantityToAdd, setQuantityToAdd ] = useState(0);
-    const handle = (event) => {
+    const handle = (event:any) => {
         setQuantityToAdd(event.target.value);
     }
     const addToLocalBill = () => {
@@ -81,7 +80,7 @@ function MedComponent({ data, setData }){
                 <h1 className="text-[12px] text-wite font-bold">In Stock: {data.quantity}</h1>
             </div>
             <div className="flex gap-2">
-                <Input type="text" onChange={handle} value={QuantityToAdd} className="w-[100px] text-right text-[24px]" onChange={handle} value={QuantityToAdd} placeholder="Q."></Input>
+                <Input type="text" onChange={handle} value={QuantityToAdd} className="w-[100px] text-right text-[24px]"  placeholder="Q."></Input>
                 <Button className={`font-bold ${ ((QuantityToAdd)&&(QuantityToAdd<=parseInt(data?.quantity))&&(QuantityToAdd>0))?"":"hidden"}`} onClick={addToLocalBill}>Add</Button>
             </div>
             

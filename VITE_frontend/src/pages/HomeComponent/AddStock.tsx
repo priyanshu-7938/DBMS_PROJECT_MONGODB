@@ -23,6 +23,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 export default function AddStock() {
     const [ querry, setQuerry ] = useState("");
+    console.log(querry);
     const [ medData, setmedData ] = useState([]);
     const handelChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -30,7 +31,7 @@ export default function AddStock() {
         fetchQuerry(event.target.value);
     };
 
-    const fetchQuerry = (str)=> {
+    const fetchQuerry = (str:any)=> {
                 var myHeaders = new Headers();
                 var urlencoded = new URLSearchParams();
                 urlencoded.append("query", str);
@@ -71,11 +72,11 @@ export default function AddStock() {
 
 
 
-function MedComponent({data}){
+function MedComponent({data}:{data:any}) {
     const {toast} = useToast();
-    const { token, userEmail } = useTheContext();
+    const { token, userEmail } = useTheContext() as any;
     const [medicineQuantityToAdd, setMedicineQuantityToAdd] = useState(0);
-    const handle = (event) => {
+    const handle = (event:any) => {
         setMedicineQuantityToAdd(event.target.value);
     }
     const handelAddingTheStockToStore = () => {

@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheContext } from "@/context";
 
 export default function Default() {
-  
-  const { setToken, setUserEmail } = useTheContext();
+  const { setToken, setUserEmail } = useTheContext() as any;
 
   const Navigate = useNavigate();
   const { toast } = useToast();

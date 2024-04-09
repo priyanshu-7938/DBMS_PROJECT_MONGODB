@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
     Sheet,
     SheetContent,
@@ -11,12 +11,10 @@ import {
   import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
-    TableFooter
   } from "@/components/ui/table";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
@@ -30,11 +28,11 @@ import { BASE_URL, BILL_BY_NAME, PORT, BILL_BY_PHONE, BILL_BY_MED } from "@/env"
 
 export default function History(){
     const { toast } = useToast();
-    const { userEmail, token } = useTheContext();
+    const { token, userEmail } = useTheContext() as any;
     const [ querry, setQuerry ] = useState("");
     const [ selector, setSelector ] = useState(0);
     const [ bills, setBills] = useState([]);
-    const handleQuerryChange = (e)=>{setQuerry(e.target.value)};
+    const handleQuerryChange = (e:any)=>{setQuerry(e.target.value)};
     const handleSerch = () => {
         if( !querry ){
             toast({
@@ -118,7 +116,7 @@ export default function History(){
         .then(result => setBills(JSON.parse(result)))
         .catch(error => console.log('error', error));
     }
-    function capitalizeFirstLetter(word) {
+    function capitalizeFirstLetter(word:any) {
         if (!word || typeof word!=='string')
             return word;
         return word.charAt(0).toUpperCase() + word.slice(1);
@@ -161,7 +159,7 @@ export default function History(){
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        { bills.length>0 && bills.map((item, index) => {
+                        { bills.length>0 && bills.map((item:any) => {
                             return (
                                 <TableRow className="w-full">
                                     <TableCell className="font-light text-center">{item.createdAt.slice(0,10)}</TableCell>
@@ -194,7 +192,7 @@ export default function History(){
                                                         <TableBody>
                                                             {
                                                                 item.productList.map(
-                                                                    (proItem, index)=>{
+                                                                    (proItem:any, index:any)=>{
                                                                         return (
                                                                             <TableRow>
                                                                                 <TableCell className="font-medium">{index+1}</TableCell>

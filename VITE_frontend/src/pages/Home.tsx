@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast"
 import { useTheContext } from "@/context";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL, PORT, STORE_DATA_ROUTE } from "@/env";
-import { Toaster } from "@/components/ui/toaster";
 import AddStock from "./HomeComponent/AddStock";
 import RemoveStock from "./HomeComponent/RemoveStock";
 import Navbar from "./HomeComponent/Navbar";
@@ -15,7 +14,7 @@ import History from "./HomeComponent/History";
 
 export default function Home() {
   const { toast } = useToast();
-  const { userEmail, token, userData, setUserData } = useTheContext();
+  const { userEmail, token, setUserData } = useTheContext() as any;
   const Navigate = useNavigate();
 
 

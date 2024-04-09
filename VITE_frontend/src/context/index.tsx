@@ -1,39 +1,29 @@
 import { createContext, useContext, useState } from "react";
-const thisContext = createContext();
+const thisContext = createContext(null);
 //coockeies managemnet
-function setCookDataEmail(email) {
+function setCookDataEmail(email:any) {
     document.cookie = `userEmail=${encodeURIComponent(email)}; path=/; secure`;
 }
-function setCookDataToken(token) {
+function setCookDataToken(token:any) {
     document.cookie = `accessToken=${encodeURIComponent(token)}; path=/; secure`;
 }
-function getCookData() {
-    const cookies = document.cookie.split('; ');
-    let userData = {};
-    for (const cookie of cookies) {
-        const [name, value] = cookie.split('=');
-        if (name === 'userEmail' || name === 'accessToken') {
-            userData[name] = decodeURIComponent(value);
-        }
-    }
-    return Object.keys(userData).length ? userData : undefined;
-}
+
 function clearCookData() {
     document.cookie = 'userEmail=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure';
     document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure';
 }
 //
 
-export default function ContextProvierAllOver({ children }) {
-    const [ userData, setUserData ] = useState();
-    const [ token, setTokenInState ] = useState();
-    const [ userEmail, setUserEmailInState ]= useState();
+export default function ContextProvierAllOver({ children }:{children:any}) {
+    const [ userData, setUserData ] = useState()as any;
+    const [ token, setTokenInState ] = useState() as any;
+    const [ userEmail, setUserEmailInState ]= useState() as any;
 
-    const setToken=(token)=>{
+    const setToken=(token:any)=>{
         setTokenInState(token);
         setCookDataToken(token);
     }
-    const setUserEmail=(email)=>{
+    const setUserEmail=(email:any)=>{
         setUserEmailInState(email);
         setCookDataEmail(email);
     }
@@ -49,9 +39,8 @@ export default function ContextProvierAllOver({ children }) {
             userData, setUserData,
             token, setToken,
             userEmail, setUserEmail,
-            LogOut,
-
-        }}
+            LogOut
+            }as any}
         >
             {children}
         </thisContext.Provider>

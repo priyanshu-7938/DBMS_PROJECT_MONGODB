@@ -7,19 +7,17 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-    TableFooter
   } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import refresh from "../../assets/refresh.png";
 import { useTheContext } from '@/context';
 import { PORT, BASE_URL, STORE_STOCK_QUERRY } from '@/env';
 
 export default function Stocks () {
     const [querry, setQuerry] = useState("");
-    const [medData, setmedData] = useState([]);
-    const { token, userEmail } = useTheContext();
+    const [medData, setmedData] = useState([]) as any;
+    const { token, userEmail } = useTheContext() as any;
 
     useEffect(()=>{fetchQuerryStock()},[]);
 
@@ -72,7 +70,7 @@ export default function Stocks () {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {medData && medData.map((med, index) => {
+                    {medData && medData.map((med:any, index:any) => {
                         return (
                             <TableRow key={index}>
                                 <TableCell className="font-bold text-center">{med.medData.medID}</TableCell>

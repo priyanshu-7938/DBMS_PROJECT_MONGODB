@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useTheContext } from "@/context";
-import { AvatarGenerator } from 'random-avatar-generator';
 import logout from "../../assets/logout.png";
 import { useNavigate } from "react-router-dom";
 
 
 
 export default function Navbar() {
-    const { userEmail, userData, LogOut } = useTheContext();
-    const generator = new AvatarGenerator();
-    const [ avatarURL, setAvatarURL] = useState("");
+    const { userEmail, userData, LogOut } = useTheContext() as any;
     const Navigate = useNavigate();
 
-
-    useEffect(()=>{
-        setAvatarURL(generator.generateRandomAvatar(userEmail));
-    },[]);
     return (
         <div className="items-center flex justify-between mt-[10px] px-4">
             <div className="flex flex-col ">
