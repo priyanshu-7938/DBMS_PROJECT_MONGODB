@@ -1,19 +1,17 @@
-const PORT = 3000;
-const BASE_URL = "http://localhost:";
-const SIGNUP_ROUTE = "/store/signup";
-const LOGIN_ROUTE = "/store/login";
-const STORE_DATA_ROUTE = "/store/api/getStoreData";
-const STORE_STOCK_QUERRY = "/store/api/querryStock";
-const ADD_STOCK = "/store/api/addMed"
-const MEDICINE_SEARCH = "/medicines/search";
-const REMOVE_STOCK = "/store/api/removeMed";
-const BILLING_STOCK = "/store/api/billing";
-const BILL_BY_NAME = "/store/api/getBillsByName";
-const BILL_BY_PHONE = "/store/api/getBillsByPhone";
-const BILL_BY_MED = "/store/api/getBillByMed"
-
+const BASE_URL = import.meta.env.VITE_BASE_API_URL_DEV;
+const SIGNUP_ROUTE = import.meta.env.VITE_SIGNUP_ROUTE;
+const LOGIN_ROUTE = import.meta.env.VITE_LOGIN_ROUTE;
+const STORE_DATA_ROUTE = import.meta.env.VITE_STORE_DATA_ROUTE;
+const STORE_STOCK_QUERRY = import.meta.env.VITE_STORE_STOCK_QUERRY;
+const ADD_STOCK = import.meta.env.VITE_ADD_STOCK;
+const MEDICINE_SEARCH = import.meta.env.VITE_MEDICINE_SEARCH ;
+const REMOVE_STOCK = import.meta.env.VITE_REMOVE_STOCK;
+const BILLING_STOCK = import.meta.env.VITE_BILLING_STOCK;
+const BILL_BY_NAME = import.meta.env.VITE_BILL_BY_NAME;
+const BILL_BY_PHONE = import.meta.env.VITE_BILL_BY_PHONE;
+const BILL_BY_MED = import.meta.env.VITE_BILL_BY_MED;
+console.log(import.meta.env);
 export {
-    PORT,
     BASE_URL,
     SIGNUP_ROUTE,
     LOGIN_ROUTE,

@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast"
 import { useTheContext } from "@/context";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL, PORT, STORE_DATA_ROUTE } from "@/env";
+import { BASE_URL, STORE_DATA_ROUTE } from "@/env";
 import AddStock from "./HomeComponent/AddStock";
 import RemoveStock from "./HomeComponent/RemoveStock";
 import Navbar from "./HomeComponent/Navbar";
@@ -43,7 +43,7 @@ export default function Home() {
                 body: urlencoded,
                 redirect: 'follow' as RequestRedirect | undefined
               };
-              const url = BASE_URL+PORT+STORE_DATA_ROUTE;
+              const url = BASE_URL+STORE_DATA_ROUTE;
               fetch(url, requestOptions)
                 .then(response => {
                   if(response.status == 200){

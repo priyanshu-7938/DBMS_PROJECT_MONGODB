@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { BASE_URL, BILL_BY_NAME, PORT, BILL_BY_PHONE, BILL_BY_MED } from "@/env";
+import { BASE_URL, BILL_BY_NAME, BILL_BY_PHONE, BILL_BY_MED } from "@/env";
   
 
 export default function History(){
@@ -68,7 +68,7 @@ export default function History(){
                 body: urlencoded,
                 redirect: 'follow' as  RequestRedirect | undefined
                 };
-                const uri = BASE_URL+PORT+BILL_BY_NAME;
+                const uri = BASE_URL+BILL_BY_NAME;
                 fetch(uri, requestOptions)
                 .then(response => response.text())
                 .then(result => setBills(JSON.parse(result)))
@@ -89,7 +89,7 @@ export default function History(){
         body: urlencoded,
         redirect: 'follow' as  RequestRedirect | undefined
         };
-        const uri = BASE_URL+PORT+BILL_BY_PHONE;
+        const uri = BASE_URL+BILL_BY_PHONE;
         fetch(uri, requestOptions)
         .then(response => response.text())
         .then(result => setBills(JSON.parse(result)))
@@ -110,7 +110,7 @@ export default function History(){
         body: urlencoded,
         redirect: 'follow' as  RequestRedirect | undefined
         };
-        const uri = BASE_URL+PORT+BILL_BY_MED;
+        const uri = BASE_URL+BILL_BY_MED;
         fetch(uri, requestOptions)
         .then(response => response.text())
         .then(result => setBills(JSON.parse(result)))

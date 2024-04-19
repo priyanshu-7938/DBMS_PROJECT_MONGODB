@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast"
 
-import { BASE_URL, LOGIN_ROUTE, PORT, SIGNUP_ROUTE } from "../env"; 
+import { BASE_URL, LOGIN_ROUTE, SIGNUP_ROUTE } from "../env"; 
 import { useNavigate } from "react-router-dom";
 import { useTheContext } from "@/context";
 
@@ -64,7 +64,7 @@ export default function Default() {
           body: urlencoded,
           redirect: 'follow' as RequestRedirect | undefined
         };
-        const postURL = BASE_URL+PORT+SIGNUP_ROUTE;
+        const postURL = BASE_URL+SIGNUP_ROUTE;
         fetch( postURL, requestOptions)
           .then(response => {
             console.log(response.status);
@@ -105,7 +105,8 @@ export default function Default() {
             body: urlencoded,
             redirect: 'follow' as RequestRedirect | undefined
           };
-          const url = BASE_URL+PORT+LOGIN_ROUTE;
+          const url = BASE_URL+LOGIN_ROUTE;
+          console.log(url);
           fetch(url, requestOptions)
             .then(response => {
               if(response.status == 422){

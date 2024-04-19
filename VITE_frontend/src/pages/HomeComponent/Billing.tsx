@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useTheContext } from "@/context";
-import { PORT, BASE_URL, BILLING_STOCK } from '@/env';
+import {  BASE_URL, BILLING_STOCK } from '@/env';
 import SubBillingAddMed from "./SubBillingAddMed";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -84,7 +84,7 @@ export default function Billing() {
                     body: urlencoded,
                     redirect: 'follow' as RequestRedirect | undefined
                     };
-                    const uri = BASE_URL+PORT+BILLING_STOCK;
+                    const uri = BASE_URL+BILLING_STOCK;
                     fetch(uri, requestOptions)
                     .then(response => {
                         if(response.status == 200){

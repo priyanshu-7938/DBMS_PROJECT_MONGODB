@@ -3,7 +3,7 @@ import React,{ useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { BASE_URL, PORT, STORE_STOCK_QUERRY } from "@/env";
+import { BASE_URL, STORE_STOCK_QUERRY } from "@/env";
 import { Button } from "@/components/ui/button";
 import { useTheContext } from "@/context";
 
@@ -33,7 +33,7 @@ export default function SubBillingAddMed({ setData }: any) {
                 body: urlencoded,
                 redirect: 'follow' as RequestRedirect | undefined
                 };
-                const uri = BASE_URL+PORT+STORE_STOCK_QUERRY;
+                const uri = BASE_URL+STORE_STOCK_QUERRY;
                 fetch(uri, requestOptions)
                 .then(response => response.text())
                 .then(result => setmedData(JSON.parse(result)))

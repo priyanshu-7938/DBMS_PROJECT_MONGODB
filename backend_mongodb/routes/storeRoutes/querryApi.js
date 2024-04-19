@@ -22,19 +22,22 @@ querryApi.post('/getStoreData', async (req, res) => {
 });
 
 querryApi.post('/addMed', async (req,res) => {
-    const {
+    let {
         medID,
         name,
         secName,
         sellingType,
         medType,
         pricePerTab,
-        quantityPerCard,
         cardPerBox,
-
+        pricePerBox,
         medicineQuantityToAdd,
         storeEmail,
     } = req.body;
+    const price = parseFloat(pricePerTab);
+    if (isNaN(price)) {
+        pricePerTab = pricePerBox;
+    }
     try{
         const store = await Stores.findOne({storeEmail: storeEmail});
         if(!store){
@@ -68,7 +71,6 @@ querryApi.post('/addMed', async (req,res) => {
                     sellingType,
                     medType,
                     pricePerTab,
-                    quantityPerCard,
                     cardPerBox
                 },
                 medObjectid: await Medicine.findOne({medID: medID})._id,
